@@ -1,10 +1,10 @@
 import express from 'express';
-import { createHotel } from '../controllers/auth';
-import { deleteHotel, getHotel, updateHotel } from '../controllers/hotel';
+import { deleteHotel, getHotel, updateHotel,createHotel, getSingleHotel, getHotelWithName } from '../controllers/hotel.js';
 import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyToken.js";
 
-const router=express.Router();
 
+
+const router=express.Router();
 
 router.post('/',createHotel)
 //UPDATE
@@ -12,11 +12,15 @@ router.put("/:id", verifyAdmin, updateHotel);
 
 //DELETE
 router.delete("/:id", verifyAdmin, deleteHotel);
-//GET
 
-router.get("/find/:id", getHotel);
+//GET ONE WITH ID
+router.get("/find", getSingleHotel);
+
+//GET ONE WITH Name
+router.get("/findbyname", getHotelWithName);
+
+
 //GET ALL
-
 router.get("/", getHotel);
 
 

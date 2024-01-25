@@ -6,7 +6,7 @@ import authRoute from './routes/auth.js'
 
 import hotelRoute from './routes/hotels.js'
 
-import usersRoute from './routes/users.js'
+import usersRoute from './routes/user.js'
 
 import roomsRoute from './routes/rooms.js'
 import cookieParser from 'cookie-parser';
@@ -34,7 +34,7 @@ app.use('/users',usersRoute);
 
 
 
-app.listen(8800,()=>{
+app.listen(8800,(req,res)=>{
     connect();
     console.log("Connested to backend")
 })

@@ -32,11 +32,40 @@ export const updateHotel = async (req, res, next) => {
       next(err);
     }
   };
-  export const getHotel = async (req, res, next) => {
+
+  //get hotel by id single record
+  export const getSingleHotel = async (req, res, next) => {
+    const { id } = req.body;
     try {
-      const hotel = await Hotel.findById(req.params.id);
+      const hotel = await Hotel.findOne({_id:id});
       res.status(200).json(hotel);
     } catch (err) {
       next(err);
     }
   };
+
+  export const getHotel = async (req, res, next) => {
+    try {
+      const hotel = await Hotel.find();
+      res.status(200).json(hotel);
+    } catch (err) {
+      next(err);
+    }
+  };
+
+  //get all hotel by destination
+  export const getHotelWithName = async (req, res, next) => {
+
+    const { name } = req.body;
+
+    // Assign a default value if name is not provided
+    const cityName = name;
+
+    try {
+      const hotel = await Hotel.find({city: name});
+      res.status(200).json(hotel);
+    } catch (err) {
+      next(err);
+    }
+  };
+
